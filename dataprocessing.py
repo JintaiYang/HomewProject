@@ -26,6 +26,7 @@ class plotimg():
 
         Z = self.classifier.predict(np.c_[xx.ravel(),yy.ravel()])
         Z = Z.reshape(xx.shape)
+
         axis.contourf(xx,yy,Z,c=self.ytrain,alpha = 0.75,cmap = plt.cm.bone)
         color = ['r','b']
         axis.scatter(self.Xtrain[:,0],self.Xtrain[:,1],c=color,alpha = 0.9,

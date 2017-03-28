@@ -18,7 +18,6 @@ Xtest,ytest = rfile.readfile('test.txt')
 
 
 
-
 gnb = NB.GaussianNB()
 bnb = NB.BernoulliNB()
 mnb = NB.MultinomialNB()

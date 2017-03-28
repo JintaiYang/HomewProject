@@ -37,5 +37,3 @@ print '准确率',scores.mean()
 
 
 
-
-

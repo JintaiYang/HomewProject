@@ -1,14 +1,14 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar 28 21:03:34 2017
+Created on Sun Mar 26 20:35:53 2017
 
 @author: yjt
 """
 
-from sklearn.neural_network import MLPClassifier
-from dataprocessing import readfile,plotimg
+from sklearn.svm import SVC
 import matplotlib.pyplot as plt
+from dataprocessing import readfile,plotimg
 
 
 rfile =readfile()
@@ -17,7 +17,8 @@ Xtest,ytest = rfile.readfile('test.txt')
 
 
 
-clf = MLPClassifier(alpha = 1e-5)
+
+clf =SVC(kernel='linear',C=1e1)
 clf.fit(Xtrain,ytrain)
 
 pltimg =plotimg(clf,Xtrain,ytrain)
@@ -26,6 +27,16 @@ pltimg =plotimg(clf,Xtrain,ytrain)
 fig,axes = plt.subplots(1,figsize = (8,6))
 
 pltimg.plot_classlpane(axes,'Constant weights')
+
+
+
+
+
+
+
+
+
+
 
 
 
