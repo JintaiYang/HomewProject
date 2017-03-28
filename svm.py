@@ -9,6 +9,7 @@ Created on Sun Mar 26 18:24:32 2017
 import numpy as np
 from sklearn.svm import SVC
 import matplotlib.pyplot as plt
+from sklearn.cross_validation import cross_val_score
 
 
 def plot_decision_function(classifier,axis,title):
@@ -30,19 +31,20 @@ y = np.array([1, 1, 1, -1,-1,-1])
 pltx = [x[0] for x in X]
 plty = [x[1] for x in X]
 
-clf = SVC()
+clf = SVC(kernel='linear')
 clf.fit(X, y)
 
 
-plt.plot(clf.decision_function(X))
 
 print(clf.predict([[0.8, 1]]))
 
 plt.scatter(pltx,plty,c=y)
 
-fig,axes = plt.subplots(1,2,figsize = (14,6))
-plot_decision_function(clf,axes[0],'Constant weights')
+fig,axes = plt.subplots(1,figsize = (8,8))
+plot_decision_function(clf,axes,'Constant weights')
 plt.show()
 
+scores=cross_val_score(clf,X,y)
+print '准确率',np.mean(scores),scores
 
 

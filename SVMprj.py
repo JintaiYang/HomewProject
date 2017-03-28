@@ -8,6 +8,7 @@ Created on Sun Mar 26 16:42:18 2017
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import svm
+from sklearn.cross_validation import cross_val_score
 
 def plot_decision_function(classifier,sample_weight,axis,title):
     xx,yy = np.meshgrid(np.linspace(-4,5,500),np.linspace(-4,5,500))
@@ -35,9 +36,9 @@ sample_weight_last_ten[15:] *= 5
 sample_weight_last_ten[9] *= 15
 
 
-clf_weights = svm.SVC()
+clf_weights = svm.SVC(kernel= 'linear')
 clf_weights.fit(X,y,sample_weight = sample_weight_last_ten)
-clf_no_weights = svm.SVC()
+clf_no_weights = svm.SVC(kernel= 'linear')
 clf_no_weights.fit(X,y)
 
 fig,axes = plt.subplots(1,2,figsize = (14,6))
@@ -46,6 +47,8 @@ plot_decision_function(clf_weights,sample_weight_last_ten,axes[1],'Modified weig
 plt.show()
 
 
+scores=cross_val_score(clf_weights,X,y,cv=5)
+print '准确率',np.mean(scores),scores
 
 
 
